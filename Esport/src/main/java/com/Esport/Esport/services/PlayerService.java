@@ -87,15 +87,19 @@ public class PlayerService {
     }
 
     public List<PlayerHeaderDto> findPlayerByTeamId(int teamId){
-        return playerRepository.findPlayerByTeamId(teamId).stream()
-                .map(PlayerHeaderDto::set)
-                .collect(java.util.stream.Collectors.toList());
+        List<PlayerHeaderDto> listTeam = PlayerHeaderDto.toList(playerRepository.findPlayerByTeamId(teamId));
+        if(listTeam.isEmpty()){
+            throw new EntityNotFoundException("Player not found");
+        }
+        return listTeam;
     }
 
     public List<PlayerHeaderDto> findPlayerByUserId(int userId){
-        return playerRepository.findPlayerByUserId(userId).stream()
-                .map(PlayerHeaderDto::set)
-                .collect(java.util.stream.Collectors.toList());
+        List<PlayerHeaderDto> listUser = PlayerHeaderDto.toList(playerRepository.findPlayerByUserId(userId));
+        if(listUser.isEmpty()){
+            throw new EntityNotFoundException("Player not found");
+        }
+        return listUser;
     }
 
 }

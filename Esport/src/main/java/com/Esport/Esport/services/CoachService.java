@@ -85,16 +85,20 @@ public class CoachService {
         return true;
     }
 
-    public List<CoachHeaderDto> getCoachByTeamId(int countryId){
-        return coachRepository.findCoachByTeamId(countryId).stream()
-                .map(CoachHeaderDto::set)
-                .collect(java.util.stream.Collectors.toList());
+    public List<CoachHeaderDto> getCoachByTeamId(int teamId){
+       List<CoachHeaderDto> listCoach = CoachHeaderDto.toList(coachRepository.findCoachByTeamId(teamId));
+       if(listCoach.isEmpty()){
+           throw new EntityNotFoundException("Coach not found");
+       }
+       return listCoach;
     }
 
     public List<CoachHeaderDto> getCoachByUserId(int userId){
-        return coachRepository.findCoachByUserId(userId).stream()
-                .map(CoachHeaderDto::set)
-                .collect(java.util.stream.Collectors.toList());
+        List<CoachHeaderDto> listUser = CoachHeaderDto.toList(coachRepository.findCoachByUserId(userId));
+        if(listUser.isEmpty()){
+            throw new EntityNotFoundException("Coach not found");
+        }
+        return listUser;
     }
 }
 

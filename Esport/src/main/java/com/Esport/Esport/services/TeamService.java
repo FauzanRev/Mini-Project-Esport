@@ -61,9 +61,11 @@ public class TeamService {
     }
 
     public List<TeamHeaderDto> findTeamByCountryId(int country){
-        return teamRepository.getTeamByCountryId(country).stream()
-                .map(TeamHeaderDto::set)
-                .collect(java.util.stream.Collectors.toList());
+        List<TeamHeaderDto> listCountry = TeamHeaderDto.toList(teamRepository.getTeamByCountryId(country));
+        if(listCountry.isEmpty()){
+            throw new EntityNotFoundException("Team not found");
+        }
+        return listCountry;
     }
 
 }

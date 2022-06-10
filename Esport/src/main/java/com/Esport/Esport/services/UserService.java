@@ -12,6 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -59,10 +60,13 @@ public class UserService {
         return true;
     }
 
-    public List<UserHeaderDto> getUserByCountry(int countryId) {
-        return userRepository.getUserByCountryId(countryId).stream()
-                .map(UserHeaderDto::set)
-                .collect(Collectors.toList());
+    public List<UserHeaderDto> getUserByCountry(int country) {
+        List<UserHeaderDto> listCountry = UserHeaderDto.toList(userRepository.getUserByCountryId(country));
+        if (listCountry.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
+        }
+        return listCountry;
+
     }
 
 }

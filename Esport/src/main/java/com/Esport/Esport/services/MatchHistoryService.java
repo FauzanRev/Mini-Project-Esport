@@ -86,8 +86,12 @@ public class MatchHistoryService {
     }
 
     public List<MatchHistoryHeaderDto> findMatchHistoryByTeamId(int teamId){
-        return matchHistoryRepository.findMatchHistoryByTeamId(teamId).stream()
-                .map(MatchHistoryHeaderDto::set)
-                .collect(java.util.stream.Collectors.toList());
+        List<MatchHistoryHeaderDto> listTeam = MatchHistoryHeaderDto.toList(
+                matchHistoryRepository.findMatchHistoryByTeamId(teamId));
+
+        if(listTeam.isEmpty()){
+            throw new EntityNotFoundException("MatchHistory not found");
+        }
+        return listTeam;
     }
 }
