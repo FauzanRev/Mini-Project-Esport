@@ -65,11 +65,11 @@ public class CoachController {
     }
 
     @GetMapping("team/{teamId}")
-    public ResponseEntity<RestResponse<List<CoachHeaderDto>>> findCoachByCountry(@PathVariable int teamId) {
+    public ResponseEntity<RestResponse<List<CoachHeaderDto>>> findCoachByTeam(@PathVariable int teamId) {
         return ResponseEntity.ok().body(
                 new RestResponse<>(
                         service.getCoachByTeamId(teamId),
-                        "Berhasil mendapatkan data coach dari negara " + teamId,
+                        "Berhasil mendapatkan data coach dari TeamId " + teamId,
                         "200"));
     }
     @GetMapping("user/{userId}")
@@ -77,7 +77,7 @@ public class CoachController {
         return ResponseEntity.ok().body(
                 new RestResponse<>(
                         service.getCoachByUserId(userId),
-                        "Berhasil mendapatkan data coach dari user " + userId,
+                        "Berhasil mendapatkan data coach dari UserId " + userId,
                         "200"));
     }
 

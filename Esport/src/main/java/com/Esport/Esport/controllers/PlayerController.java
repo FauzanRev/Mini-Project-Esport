@@ -69,7 +69,7 @@ public class PlayerController {
         return ResponseEntity.ok().body(
                 new RestResponse<>(
                         service.findPlayerByTeamId(teamId),
-                        "Berhasil mendapatkan data player berdasarkan team dengan id " + teamId,
+                        "Berhasil mendapatkan data player berdasarkan TeamId " + teamId,
                         "200"));
     }
 
@@ -78,7 +78,7 @@ public class PlayerController {
         return ResponseEntity.ok().body(
                 new RestResponse<>(
                         service.findPlayerByUserId(userId),
-                        "Berhasil mendapatkan data player berdasarkan user dengan id " + userId,
+                        "Berhasil mendapatkan data player berdasarkan UserId " + userId,
                         "200"));
     }
 }

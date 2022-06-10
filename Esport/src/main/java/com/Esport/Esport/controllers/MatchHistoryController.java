@@ -70,7 +70,7 @@ public class MatchHistoryController {
         return ResponseEntity.ok().body(
                 new RestResponse<>(
                         service.findMatchHistoryByTeamId(teamId),
-                        "Berhasil mendapatkan data match history dengan team id " + teamId,
+                        "Berhasil mendapatkan data match history dengan TeamId " + teamId,
                         "200"));
     }
 }

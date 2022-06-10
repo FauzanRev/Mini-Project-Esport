@@ -69,7 +69,7 @@ public class UserController {
         return ResponseEntity.ok().body(
                 new RestResponse<>(
                         service.getUserByCountry(country),
-                        "Berhasil mendapatkan data user dengan negara " + country,
+                        "Berhasil mendapatkan data user dengan CountryId " + country,
                         "200"));
     }
 }

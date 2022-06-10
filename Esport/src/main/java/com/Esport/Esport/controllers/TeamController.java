@@ -69,7 +69,7 @@ public class TeamController {
         return ResponseEntity.ok().body(
                 new RestResponse<>(
                         service.findTeamByCountryId(countryId),
-                        "Berhasil mendapatkan data team dengan id " + countryId,
+                        "Berhasil mendapatkan data team dengan CountryId " + countryId,
                         "200"));
     }
 
